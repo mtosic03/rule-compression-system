@@ -22,4 +22,16 @@ Similar Rule Grouping
 Rules are grouped based on the exact predicates they use, regardless of how those predicates are combined. From each group, only the rule with the highest score (coverage × precision) is kept.
 
 Rule Scoring and Ranking
-The final set of non-redundant rules is ranked using an adjusted score:
+The final set of non-redundant rules is ranked using an adjusted score:     adjusted_score = (coverage × precision) / √complexity
+
+This formula favors rules that:
+- Have high coverage of old donors
+- Have high precision (few false positives)
+- Are relatively simple (fewer predicates)
+
+The program expects:
+- `dataset.tsv`: Tab-separated file containing donor data
+- `rules.txt`: Text file with rules, one per line
+
+It produces:
+- `rules_compressed.txt`: Compressed set of rules
